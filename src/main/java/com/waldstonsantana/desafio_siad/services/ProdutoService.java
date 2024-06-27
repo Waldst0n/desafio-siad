@@ -47,7 +47,7 @@ public class ProdutoService {
         copyDtoToEntity(dto,entity);
 
         Juridica juridica = juridicaRepository.getReferenceById(dto.getPessoaJuridicaDto().getId());
-      //  juridica.setId(dto.getPessoaJuridicaDto().getId());
+
 
         entity.setJuridica(juridica);
 
@@ -94,6 +94,8 @@ public class ProdutoService {
 
 
     }
+
+
 
 
 }

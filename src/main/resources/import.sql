@@ -16,3 +16,6 @@ INSERT INTO tb_endereco (cep, cidade, bairro, rua, numero, pessoa_fisica_id) val
 INSERT INTO tb_produtos (nome, valor, juridica_id) values ('Vidro temperado', 234.54, 2)
 INSERT INTO tb_produtos (nome, valor, juridica_id) values ('Luminária', 56.78, 1)
 INSERT INTO tb_produtos (nome, valor, juridica_id) values ('Lapis Grafite', 3.55, 3)
+
+
+INSERT INTO tb_vendas (total, quantidade, fisica_id, produto_id) values (234.54, 1, 1, 1)
