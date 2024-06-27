@@ -3,7 +3,6 @@ package com.waldstonsantana.desafio_siad.dtos;
 import com.waldstonsantana.desafio_siad.models.Fisica;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class PessoaFisicaDto {
 

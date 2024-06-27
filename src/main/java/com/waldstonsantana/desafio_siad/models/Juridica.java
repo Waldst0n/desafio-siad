@@ -36,4 +36,6 @@ public class Juridica  extends Pessoa{
     public List<Produto> getProdutos() {
         return produtos;
     }
+
+
 }

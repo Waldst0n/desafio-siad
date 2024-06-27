@@ -12,3 +12,7 @@ INSERT INTO tb_pessoa_juridica (nome, cnpj) values ('Comércio Varejo', '4567890
 
 INSERT INTO tb_endereco (cep, cidade, bairro, rua, numero, pessoa_fisica_id) values ('49044-090', 'Aracaju', 'Santa Maria', 'Rua 2', '154', 1 )
 INSERT INTO tb_endereco (cep, cidade, bairro, rua, numero, pessoa_fisica_id) values ('40956-040', 'Aracaju', 'São Conrado', 'Rua Mariana', '4567', 2 )
+
+INSERT INTO tb_produtos (nome, valor, juridica_id) values ('Vidro temperado', 234.54, 2)
+INSERT INTO tb_produtos (nome, valor, juridica_id) values ('Luminária', 56.78, 1)
+INSERT INTO tb_produtos (nome, valor, juridica_id) values ('Lapis Grafite', 3.55, 3)

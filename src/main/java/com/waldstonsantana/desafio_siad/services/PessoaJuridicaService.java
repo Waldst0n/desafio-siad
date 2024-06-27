@@ -1,10 +1,8 @@
 package com.waldstonsantana.desafio_siad.services;
 
-import com.waldstonsantana.desafio_siad.dtos.PessoaFisicaDto;
 import com.waldstonsantana.desafio_siad.dtos.PessoaJuridicaDto;
-import com.waldstonsantana.desafio_siad.models.Fisica;
 import com.waldstonsantana.desafio_siad.models.Juridica;
-import com.waldstonsantana.desafio_siad.repositories.PessoaJurídicaRepository;
+import com.waldstonsantana.desafio_siad.repositories.PessoaJuridicaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -18,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PessoaJuridicaService {
 
     @Autowired
-    private PessoaJurídicaRepository repository;
+    private PessoaJuridicaRepository repository;
 
     @Transactional(readOnly = true)
     public PessoaJuridicaDto findById(Long id){

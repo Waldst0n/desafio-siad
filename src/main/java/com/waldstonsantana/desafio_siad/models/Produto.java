@@ -22,6 +22,8 @@ public class Produto {
     @OneToMany(mappedBy = "produto")
     private List<Venda> vendas = new ArrayList<>();
 
+
+
     public Produto() {}
 
     public Produto(Long id, String nome, Double valor, Juridica juridica) {
@@ -29,6 +31,8 @@ public class Produto {
         this.nome = nome;
         this.valor = valor;
         this.juridica = juridica;
+
+
     }
 
     public Long getId() {
@@ -61,9 +65,12 @@ public class Produto {
 
     public void setJuridica(Juridica juridica) {
         this.juridica = juridica;
+
     }
 
     public List<Venda> getVendas() {
         return vendas;
     }
+
+
 }

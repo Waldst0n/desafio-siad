@@ -14,6 +14,7 @@ public class PessoaJuridicaDto {
         this.cnpj = cnpj;
     }
 
+
     public  PessoaJuridicaDto(Juridica entity) {
         id = entity.getId();
         nome = entity.getNome();
