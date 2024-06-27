@@ -3,6 +3,8 @@ package com.waldstonsantana.desafio_siad.services;
 import com.waldstonsantana.desafio_siad.dtos.PessoaJuridicaDto;
 import com.waldstonsantana.desafio_siad.models.Juridica;
 import com.waldstonsantana.desafio_siad.repositories.PessoaJuridicaRepository;
+import com.waldstonsantana.desafio_siad.services.exceptions.DataBaseException;
+import com.waldstonsantana.desafio_siad.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -54,20 +56,20 @@ public class PessoaJuridicaService {
             return  new PessoaJuridicaDto(entity);
         }
         catch (EntityNotFoundException e) {
-            throw new RuntimeException("Recurso não encontrado!");
+            throw new ResourceNotFoundException("Recurso não encontrado!");
         }
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
         if(!repository.existsById(id)) {
-            throw  new RuntimeException("Recurso não encontrado!");
+            throw  new ResourceNotFoundException("Recurso não encontrado!");
         }
         try {
             repository.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
-            throw  new RuntimeException("Falha de integridade referencial");
+            throw  new DataBaseException("Falha de integridade referencial");
         }
 
         repository.deleteById(id);

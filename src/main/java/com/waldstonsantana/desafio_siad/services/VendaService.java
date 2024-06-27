@@ -1,14 +1,14 @@
 package com.waldstonsantana.desafio_siad.services;
 
-import com.waldstonsantana.desafio_siad.dtos.ProdutoDto;
 import com.waldstonsantana.desafio_siad.dtos.VendaDto;
 import com.waldstonsantana.desafio_siad.models.Fisica;
-import com.waldstonsantana.desafio_siad.models.Juridica;
 import com.waldstonsantana.desafio_siad.models.Produto;
 import com.waldstonsantana.desafio_siad.models.Venda;
 import com.waldstonsantana.desafio_siad.repositories.PessoaFisicaRepository;
 import com.waldstonsantana.desafio_siad.repositories.ProdutoRepository;
 import com.waldstonsantana.desafio_siad.repositories.VendaRepository;
+import com.waldstonsantana.desafio_siad.services.exceptions.DataBaseException;
+import com.waldstonsantana.desafio_siad.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
-public class VensaService {
+public class VendaService {
 
     @Autowired
     private VendaRepository vendaRepository;
@@ -35,7 +35,7 @@ public class VensaService {
     public VendaDto findbyId (Long id) {
 
         Venda venda = vendaRepository.findById(id).orElseThrow(
-                () ->new RuntimeException("Recurso não encontrado!"));
+                () ->new ResourceNotFoundException("Recurso não encontrado!"));
 
         return new VendaDto(venda);
     }
@@ -75,20 +75,20 @@ public class VensaService {
             return  new VendaDto(entity);
         }
         catch (EntityNotFoundException e) {
-            throw new RuntimeException("Recurso não encontrado!");
+            throw new ResourceNotFoundException("Recurso não encontrado!");
         }
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
         if(!vendaRepository.existsById(id)) {
-            throw  new RuntimeException("Recurso não encontrado!");
+            throw  new ResourceNotFoundException("Recurso não encontrado!");
         }
         try {
             vendaRepository.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
-            throw  new RuntimeException("Falha de integridade referencial");
+            throw  new DataBaseException("Falha de integridade referencial");
         }
 
         vendaRepository.deleteById(id);

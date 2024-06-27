@@ -8,6 +8,8 @@ import com.waldstonsantana.desafio_siad.models.Juridica;
 import com.waldstonsantana.desafio_siad.models.Produto;
 import com.waldstonsantana.desafio_siad.repositories.EnderecoRepository;
 import com.waldstonsantana.desafio_siad.repositories.PessoaFisicaRepository;
+import com.waldstonsantana.desafio_siad.services.exceptions.DataBaseException;
+import com.waldstonsantana.desafio_siad.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -65,20 +67,20 @@ public class EnderecoService {
             return  new EnderecoDto(entity);
         }
         catch (EntityNotFoundException e) {
-            throw new RuntimeException("Recurso não encontrado!");
+            throw new ResourceNotFoundException("Recurso não encontrado!");
         }
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
         if(!enderecoRepository.existsById(id)) {
-            throw  new RuntimeException("Recurso não encontrado!");
+            throw  new ResourceNotFoundException("Recurso não encontrado!");
         }
         try {
             enderecoRepository.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
-            throw  new RuntimeException("Falha de integridade referencial");
+            throw  new DataBaseException("Falha de integridade referencial");
         }
 
         enderecoRepository.deleteById(id);

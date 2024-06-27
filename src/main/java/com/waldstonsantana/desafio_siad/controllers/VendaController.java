@@ -1,8 +1,7 @@
 package com.waldstonsantana.desafio_siad.controllers;
 
-import com.waldstonsantana.desafio_siad.dtos.ProdutoDto;
 import com.waldstonsantana.desafio_siad.dtos.VendaDto;
-import com.waldstonsantana.desafio_siad.services.VensaService;
+import com.waldstonsantana.desafio_siad.services.VendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,14 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/vendas")
 public class VendaController {
 
     @Autowired
-    private VensaService vensaService;
+    private VendaService vensaService;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<VendaDto> findById(@PathVariable Long id) {
